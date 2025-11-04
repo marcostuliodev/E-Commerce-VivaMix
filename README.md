@@ -42,7 +42,7 @@ Este é um projeto em desenvolvimento ativo, criado para aprofundar e demonstrar
 ### ⚙️ Como Executar o Projeto Localmente
 ````bash
 # 1. Clone o repositório
-$ git clone [https://github.com/ursopolar660/E-Commerce-VivaMix.git](https://github.com/ursopolar660/E-Commerce-VivaMix.git)
+$ git clone [https://github.com/marcostuliodev/E-Commerce-VivaMix.git](https://github.com/marcostuliodev/E-Commerce-VivaMix.git)
 $ cd E-Commerce-VivaMix
 ````
 ````bash
