@@ -8,8 +8,19 @@ const router = express.Router();
 
 // ROTA PARA REGISTRAR UM NOVO USUÁRIO (ADMIN)
 router.post('/register', async (req, res) => {
+  const setupKey = req.header('x-admin-setup-key');
+
+  if (!setupKey || setupKey !== process.env.ADMIN_SETUP_KEY) {
+    return res.status(403).send({ error: 'Acesso não autorizado.' });
+  }
+
   try {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).send({ error: 'E-mail e senha são obrigatórios.' });
+    }
+
     const user = new User({ email, password });
     await user.save();
     res.status(201).send({ message: 'Usuário registrado com sucesso!' });
@@ -22,6 +33,11 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).send({ error: 'E-mail e senha são obrigatórios.' });
+    }
+
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).send({ error: 'Email ou senha inválidos.' });

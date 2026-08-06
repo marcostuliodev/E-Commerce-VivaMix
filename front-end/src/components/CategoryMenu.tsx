@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import apiClient from '../api/axiosConfig';
-import { Button, Menu, MenuItem, Box, Typography } from '@mui/material';
+import { Button, Menu, MenuItem, Box } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function CategoryMenu() {

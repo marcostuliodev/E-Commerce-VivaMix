@@ -1,10 +1,9 @@
 // frontend/src/pages/LoginPage.tsx
 
-import React, { useState } from 'react'; // CORRIGIDO: 'react' em minúsculo
+import { useState, type FormEvent } from 'react';
 import apiClient from '../api/axiosConfig';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { TextField, Button, Container, Typography, Box } from '@mui/material'; // Importando componentes do MUI
+import { useAuth } from '../hooks/use-auth';
+import { TextField, Button } from '@mui/material';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -12,7 +11,7 @@ function LoginPage() {
   const [error, setError] = useState('');
   const { login } = useAuth(); // 2. Use o hook para pegar a função login
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await apiClient.post('/auth/login', { email, password });

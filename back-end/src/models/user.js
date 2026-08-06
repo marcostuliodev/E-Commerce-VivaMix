@@ -8,10 +8,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true, // Garante que não haverá dois usuários com o mesmo email
     lowercase: true,
+    trim: true,
   },
   password: {
     type: String,
     required: true,
+    minlength: 8,
   },
   // Futuramente podemos adicionar um campo "role", ex: 'admin' ou 'customer'
 });

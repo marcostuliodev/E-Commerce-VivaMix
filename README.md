@@ -49,6 +49,8 @@ $ cd E-Commerce-VivaMix
 # 2. Setup e execução do Back-end
 $ cd back-end
 $ npm install
+$ cp .env.example .env
+# Preencha as variáveis obrigatórias no arquivo .env
 $ npm run dev
 ````
 ````bash

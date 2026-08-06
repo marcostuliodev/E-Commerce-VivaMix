@@ -6,13 +6,31 @@ import { v2 as cloudinary } from 'cloudinary';
 
 // 1. Configure o dotenv PRIMEIRO de tudo
 dotenv.config();
+
+const requiredEnvironmentVariables = [
+  'DATABASE_URL',
+  'JWT_SECRET',
+  'CLOUDINARY_CLOUD_NAME',
+  'CLOUDINARY_API_KEY',
+  'CLOUDINARY_API_SECRET',
+  'ADMIN_SETUP_KEY',
+];
+
+const missingEnvironmentVariables = requiredEnvironmentVariables.filter(
+  (variable) => !process.env[variable]
+);
+
+if (missingEnvironmentVariables.length > 0) {
+  throw new Error(
+    `Variáveis de ambiente ausentes: ${missingEnvironmentVariables.join(', ')}`
+  );
+}
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-console.log('API Key lida do .env:', process.env.CLOUDINARY_API_KEY);
 
 // 2. AGORA importe as rotas, que dependem das variáveis do dotenv
 import productRoutes from './routes/productRoutes.js';
@@ -29,7 +47,7 @@ const app = express();
 const allowedOrigins = [
   'https://e-commerce-viva-mix.vercel.app', // URL de produção (sem a barra no final)
   'http://localhost:5173',
-  'https://vivamix.marcostuliogc.com.br/'                  // URL de desenvolvimento local
+  'https://vivamix.marcostuliogc.com.br',
 ];
 
 const corsOptions = {

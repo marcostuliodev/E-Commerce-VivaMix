@@ -1,15 +1,8 @@
 // frontend/src/context/AuthContext.tsx
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-interface AuthContextType {
-  token: string | null;
-  login: (newToken: string) => void;
-  logout: () => void;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+import { AuthContext } from './auth-context';
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(localStorage.getItem('authToken'));
@@ -32,12 +25,4 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
 };

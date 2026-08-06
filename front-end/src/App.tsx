@@ -3,12 +3,12 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 // 1. GARANTIR QUE AS IMPORTAÇÕES ESTÃO CORRETAS
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
 
 // Importação do Contexto de Autenticação
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
+import { useAuth } from './hooks/use-auth';
 
 // Importação dos seus Componentes e Páginas
 import HomePage from './pages/HomePage';
@@ -20,16 +20,6 @@ import SearchResultsPage from './pages/SearchResultsPage';
 import SearchBar from './components/SearchBar';
 import CategoryMenu from './components/CategoryMenu';
 import CategoryPage from './pages/CategoryPage';
-
-// Linha para depuração da variável de ambiente (mantida para a próxima etapa)
-console.log('VITE_API_URL no build:', import.meta.env.VITE_API_URL);
-
-// Criação do tema
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-});
 
 // --- COMPONENTE HEADER ---
 function Header() {
